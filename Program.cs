@@ -37,7 +37,7 @@ app.Map("/ws", async context =>
                 string message = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
                 await Broadcast($"{currentName} : {message}");
             }
-            else if (result.MessageType == WebSocketMessageType.Close || ws.State == WebSocketState.Aborted)
+            else if (result.MessageType == WebSocketMessageType.Close || ws.State == WebSocketState.Error)
             {
                 connections.Remove(ws);
                 await Broadcast($"{currentName} left the room.");
