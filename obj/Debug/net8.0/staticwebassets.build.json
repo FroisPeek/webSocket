@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "ZZLLwXEo9g6h0v2njWkME6isa8Mr7Y38Xhu6WskTytY=",
+  "Source": "wsapi",
+  "BasePath": "_content/wsapi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
