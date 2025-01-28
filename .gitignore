@@ -1,0 +1,58 @@
+# Arquivos de build e binários
+bin/
+obj/
+
+# Logs e rastreamentos
+*.log
+*.tlog
+*.vspscc
+*.user
+*.suo
+*.cache
+*.pdb
+*.ilk
+*.orig
+*.exe
+*.dll
+*.cach
+*.stackdump
+
+# Configurações locais do Visual Studio
+.vs/
+.idea/
+
+# Arquivos gerados pelo sistema
+*.DS_Store
+*.swp
+*.lock
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.old
+
+# Arquivos de configuração sensíveis
+appsettings.json
+appsettings.*.json
+
+# Arquivos de publicação e pacotes
+publish/
+*.publishsettings
+*.deploy
+*.deploy.cmd
+*.deploy-readme.txt
+artifacts/
+
+# Pacotes NuGet
+*.nupkg
+*.snupkg
+packages/
+
+# Arquivos do sistema operacional
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Outros arquivos desnecessários
+project.lock.json
+project.fragment.lock.json

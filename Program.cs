@@ -1,10 +1,11 @@
-using System.Collections.Concurrent;
-using System.Net;
 using System.Net.WebSockets;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using wsapi.Context;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseUrls("http://localhost:5000");
+builder.WebHost.UseUrls("http://localhost:5156");
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -13,67 +14,32 @@ builder.Services.AddCors(options =>
     });
 });
 
-var app = builder.Build();
+builder.Services.AddControllers();
+builder.Services.AddSingleton<WebSocketService>();
 
-app.UseCors();
-app.UseWebSockets();
-
-var connections = new List<WebSocket>();
-
-app.Map("/ws", async context =>
-{
-    if (context.WebSockets.IsWebSocketRequest)
-    {
-        var currentName = context.Request.Query["name"];
-        using var ws = await context.WebSockets.AcceptWebSocketAsync();
-        connections.Add(ws);
-
-        await Broadcast($"{currentName} joined the room.");
-        await Broadcast($"{connections.Count} connections");
-        await ReceiveMessage(ws, async (result, buffer) =>
-        {
-            if (result.MessageType == WebSocketMessageType.Text)
-            {
-                string message = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
-                await Broadcast($"{currentName} : {message}");
-            }
-            else if (result.MessageType == WebSocketMessageType.Close || ws.State == WebSocketState.Aborted)
-            {
-                connections.Remove(ws);
-                await Broadcast($"{currentName} left the room.");
-                await Broadcast($"{connections.Count} connections");
-                await ws.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
-            }
-        });
-    }
-    else
-    {
-        context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-        await context.Response.WriteAsync("This endpoint requires a WebSocket connection.");
-    }
+builder.Services.AddDbContext<ApplicationDbContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-async Task Broadcast(string message)
+builder.Services.AddSwaggerGen(c =>
 {
-    var bytes = Encoding.UTF8.GetBytes(message);
-    foreach (var socket in connections)
+    c.SwaggerDoc("v1", new OpenApiInfo()
     {
-        if (socket.State == WebSocketState.Open)
-        {
-            var array = new ArraySegment<byte>(bytes);
-            await socket.SendAsync(array, WebSocketMessageType.Text, true, CancellationToken.None);
-        }
-    }
-}
+        Title = "WSAPI",
+        Version = "v1",
+        Description = "API para WebSocket e banco de dados.",
+    });
+});
 
-async Task ReceiveMessage(WebSocket websocket, Action<WebSocketReceiveResult, byte[]> handleMessage)
+var app = builder.Build();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    var buffer = new byte[1024 * 4];
-    while (websocket.State == WebSocketState.Open)
-    {
-        var result = await websocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-        handleMessage(result, buffer);
-    }
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "WSAPI v1");
+    c.RoutePrefix = string.Empty; 
+});
+app.UseCors();
+app.UseWebSockets();
+app.MapControllers();
 
 await app.RunAsync();
