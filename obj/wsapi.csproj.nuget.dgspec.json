@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/level33/projetos-pessoais/wsapi/wsapi.csproj": {}
+    "/Users/level33/projetos-pessoais/webSocket/wsapi.csproj": {}
   },
   "projects": {
-    "/Users/level33/projetos-pessoais/wsapi/wsapi.csproj": {
+    "/Users/level33/projetos-pessoais/webSocket/wsapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/level33/projetos-pessoais/wsapi/wsapi.csproj",
+        "projectUniqueName": "/Users/level33/projetos-pessoais/webSocket/wsapi.csproj",
         "projectName": "wsapi",
-        "projectPath": "/Users/level33/projetos-pessoais/wsapi/wsapi.csproj",
+        "projectPath": "/Users/level33/projetos-pessoais/webSocket/wsapi.csproj",
         "packagesPath": "/Users/level33/.nuget/packages/",
-        "outputPath": "/Users/level33/projetos-pessoais/wsapi/obj/",
+        "outputPath": "/Users/level33/projetos-pessoais/webSocket/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/level33/.nuget/NuGet/NuGet.Config"

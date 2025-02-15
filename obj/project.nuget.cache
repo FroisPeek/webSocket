@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1k6nbfBjOtfOMC5f6ewFZXB/eV0Y5QFb+/yHL4k/9LmUZcJYcjtIUb3P5bVUi7T+o8EC7otUvFFO887qvSpFvw==",
+  "dgSpecHash": "KktpPPVuDsY/c+L9gKt/BQGILCHxAsSCo551MgWmUoqf/OFayYS7G9yzzIuYi5A2/DwwErXgCXGmgvGOjmE45w==",
   "success": true,
-  "projectFilePath": "/Users/level33/projetos-pessoais/wsapi/wsapi.csproj",
+  "projectFilePath": "/Users/level33/projetos-pessoais/webSocket/wsapi.csproj",
   "expectedPackageFiles": [
     "/Users/level33/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/Users/level33/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",

@@ -4,7 +4,6 @@ using Microsoft.OpenApi.Models;
 using wsapi.Context;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseUrls("http://localhost:5156");
 
 builder.Services.AddCors(options =>
 {
