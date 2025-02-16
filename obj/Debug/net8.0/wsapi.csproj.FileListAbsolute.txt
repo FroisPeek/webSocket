@@ -174,3 +174,4 @@
 /Users/level33/projetos-pessoais/webSocket/obj/Debug/net8.0/wsapi.pdb
 /Users/level33/projetos-pessoais/webSocket/obj/Debug/net8.0/wsapi.genruntimeconfig.cache
 /Users/level33/projetos-pessoais/webSocket/obj/Debug/net8.0/ref/wsapi.dll
+/Users/level33/projetos-pessoais/webSocket/bin/Debug/net8.0/appsettings.Production.json
